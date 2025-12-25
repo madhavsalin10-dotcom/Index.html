@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Gift for You!</title>
+    <style>
+        :root {
+            --red: #c0392b;
+            --gold: #d4af37;
+            --dark-green: #0a2e1a;
+        }
+
+        body {
+            background-color: var(--dark-green);
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* The Gift Box Styling */
+        .gift-container {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            z-index: 10;
+        }
+
+        .gift-container:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .gift-box {
+            font-size: 100px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        /* Message Card (Hidden initially) */
+        #message-card {
+            display: none;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 2px solid var(--gold);
+            backdrop-filter: blur(10px);
+            max-width: 80%;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        h1 { color: #ff4d4d; text-shadow: 2px 2px #000; }
+        
+        button {
+            background: var(--gold);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        /* Snowflake Styles */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: white;
+            user-select: none;
+            z-index: 1;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(105vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="gift-section" class="gift-container" onclick="openGift()">
+        <div class="gift-box">🎁</div>
+        <h2>You have a gift!</h2>
+        <p>Click to open</p>
+    </div>
+
+    <div id="message-card">
+        <h1>Merry Christmas, Friend! 🎄</h1>
+        <p>I'm so lucky to have you in my life. Wishing you the most magical holiday season ever!</p>
+        <p>✨ ❄️ ✨</p>
+        <button onclick="resetGift()">Close Message</button>
+    </div>
+
+    <script>
+        // Snowfall logic
+        function createSnowflake() {
+            const snow = document.createElement('div');
+            snow.innerHTML = "❄";
+            snow.classList.add('snowflake');
+            snow.style.left = Math.random() * 100 + 'vw';
+            snow.style.fontSize = Math.random() * 10 + 10 + 'px';
+            snow.style.animationDuration = Math.random() * 3 + 2 + 's';
+            snow.style.opacity = Math.random();
+            document.body.appendChild(snow);
+            setTimeout(() => { snow.remove(); }, 5000);
+        }
+        setInterval(createSnowflake, 150);
+
+        // Interaction logic
+        function openGift() {
+            document.getElementById('gift-section').style.display = 'none';
+            document.getElementById('message-card').style.display = 'block';
+            
+            // Trigger a little "confetti" effect using console or simple alerts 
+            // but for this, the animation in CSS handles the 'pop'
+        }
+
+        function resetGift() {
+            document.getElementById('gift-section').style.display = 'block';
+            document.getElementById('message-card').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
