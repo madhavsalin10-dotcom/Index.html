@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merry Christmas 🎄</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(to bottom, #0a2e1a, #031);
+        font-family: 'Segoe UI', sans-serif;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .container {
+        background: rgba(255,255,255,0.1);
+        padding: 30px;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        border: 2px solid gold;
+        max-width: 350px;
+        animation: fadeIn 1s ease;
+    }
+
+    h1 {
+        color: #ff4d4d;
+        text-shadow: 0 0 10px red;
+    }
+
+    .gift {
+        font-size: 90px;
+        cursor: pointer;
+        animation: bounce 1.5s infinite;
+    }
+
+    @keyframes bounce {
+        0%,100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+
+    button {
+        background: gold;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 25px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 15px;
+    }
+
+    #message {
+        display: none;
+        margin-top: 15px;
+        animation: pop 0.5s ease;
+    }
+
+    @keyframes pop {
+        from { transform: scale(0); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+
+    .snow {
+        position: absolute;
+        top: -10px;
+        color: white;
+        animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+        to { transform: translateY(110vh); }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="gift" onclick="openGift()">🎁</div>
+    <h2>Tap the gift</h2>
+
+    <div id="message">
+        <h1>🎄 Merry Christmas! 🎄</h1>
+        <p>
+            Dear Friend ❤️<br><br>
+            May your Christmas be filled with joy, peace,
+            laughter, and wonderful memories.
+            I’m really lucky to have you!
+        </p>
+        <p>✨❄🎅❄✨</p>
+    </div>
+
+    <button onclick="toggleMusic()">🎵 Play / Pause Music</button>
+</div>
+
+<audio id="music" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+</audio>
+
+<script>
+    function openGift() {
+        document.getElementById("message").style.display = "block";
+    }
+
+    function toggleMusic() {
+        const music = document.getElementById("music");
+        if (music.paused) music.play();
+        else music.pause();
+    }
+
+    // Snow effect
+    for (let i = 0; i < 40; i++) {
+        let snow = document.createElement("div");
+        snow.className = "snow";
+        snow.innerHTML = "❄";
+        snow.style.left = Math.random() * 100 + "vw";
+        snow.style.fontSize = Math.random() * 10 + 10 + "px";
+        snow.style.animationDuration = Math.random() * 3 + 2 + "s";
+        document.body.appendChild(snow);
+    }
+</script>
+
+</body>
+</html>
